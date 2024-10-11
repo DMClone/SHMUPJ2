@@ -16,7 +16,16 @@ public class Projectile : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         _rb.velocity = direction * 4;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<UnitStats>() != null)
+        {
+            other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
+        }
     }
 }
