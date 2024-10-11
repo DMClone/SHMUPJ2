@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UnitStats : MonoBehaviour
@@ -10,6 +11,7 @@ public class UnitStats : MonoBehaviour
     public int health;
     public int damage;
     public int projectileCountPerShot;
+    [Range(0, 1)] public float spreadOffset;
 
     public void TakeDamage(int damage)
     {
@@ -29,10 +31,11 @@ public class UnitStats : MonoBehaviour
     {
         for (int i = 0; i < projectileCountPerShot; i++)
         {
-        Projectile shotProjectile = Instantiate(projectile, transform.position, quaternion.identity).gameObject.GetComponent<Projectile>();
-        shotProjectile.transform.rotation = gameObject.transform.rotation;
-        shotProjectile.isPlayerOwned = isPlayer;
-        shotProjectile.direction = transform.up;
+            Projectile shotProjectile =
+            Instantiate(projectile, new Vector2(transform.position.x - spreadOffset * (projectileCountPerShot - 1) + spreadOffset * 2 * i, transform.position.y), quaternion.identity).gameObject.GetComponent<Projectile>();
+            shotProjectile.transform.rotation = gameObject.transform.rotation;
+            shotProjectile.isPlayerOwned = isPlayer;
+            shotProjectile.direction = transform.up;
         }
     }
 }

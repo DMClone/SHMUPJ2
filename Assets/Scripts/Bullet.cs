@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<UnitStats>() != null)
+        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer == isPlayerOwned)
         {
             other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
         }
