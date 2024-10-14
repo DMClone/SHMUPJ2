@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -7,12 +8,11 @@ public class Projectile : MonoBehaviour
 {
     private Rigidbody _rb;
     public bool isPlayerOwned;
-    public int bulletDamage;
-    public Vector3 direction;
+    [HideInInspector] public int bulletDamage;
+    [HideInInspector] public Vector3 direction;
 
     void Start()
     {
-        Debug.Log("Start");
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -23,9 +23,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer == isPlayerOwned)
+        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer != isPlayerOwned)
         {
             other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
+            Destroy(gameObject);
         }
     }
 }

@@ -36,6 +36,7 @@ public class UnitStats : MonoBehaviour
             shotProjectile.transform.rotation = gameObject.transform.rotation;
             shotProjectile.isPlayerOwned = isPlayer;
             shotProjectile.direction = transform.up;
+            shotProjectile.bulletDamage = damage;
         }
     }
 }

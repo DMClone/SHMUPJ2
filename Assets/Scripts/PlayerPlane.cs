@@ -15,8 +15,6 @@ public class PlayerPlane : MonoBehaviour
     private Vector2 moveDirection;
     [SerializeField][Range(1, 10)] private int moveSpeed;
 
-
-
     private void Awake()
     {
         if (instance == null)
@@ -31,7 +29,6 @@ public class PlayerPlane : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _us = GetComponent<UnitStats>();
     }
-
 
     private void OnEnable()
     {

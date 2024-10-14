@@ -9,6 +9,27 @@ public class GM : MonoBehaviour
 
     [SerializeField] public PlaneInput _input;
 
+
+    [System.Serializable]
+    public class Waves
+    {
+        public Rounds[] rounds;
+    }
+
+    [System.Serializable]
+    public class Rounds
+    {
+        public int enemyOneCount;
+        public int enemyTwoCount;
+    }
+
+    [SerializeField]
+    private Waves[] waves;
+
+
+    public int enemiesAlive;
+    public int currentWave;
+
     private void Awake()
     {
         if (instance == null)
@@ -40,6 +61,20 @@ public class GM : MonoBehaviour
         if (callbackContext.performed)
         {
             Debug.Log("Paused");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (currentWave == 0)
+        {
+            Debug.Log("5 sec");
+            currentWave++;
+        }
+        else if (currentWave == 1)
+        {
+            Debug.Log("10 sec");
+            currentWave++;
         }
     }
 }
