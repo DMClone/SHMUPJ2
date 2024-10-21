@@ -15,6 +15,11 @@ public class Wrap : MonoBehaviour
 
     public onBoundsExitEvents onBoundsExit;
 
+    private void Awake()
+    {
+        viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+    }
+
     private void FixedUpdate()
     {
         viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
@@ -35,7 +40,10 @@ public class Wrap : MonoBehaviour
         }
         else if (viewportPosition.x > 1)
         {
-            moveAdjust.x -= 1;
+            if (onBoundsExit == onBoundsExitEvents.Wrap)
+            {
+                moveAdjust.x -= 1;
+            }
         }
 
         transform.position = Camera.main.ViewportToWorldPoint(viewportPosition + moveAdjust);

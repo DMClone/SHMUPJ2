@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4749636097835172399}
   - component: {fileID: 4992736545286868023}
   - component: {fileID: 9210597666158194664}
-  - component: {fileID: 522214903367679380}
+  - component: {fileID: 1248826457360501029}
   m_Layer: 0
   m_Name: Walker
   m_TagString: Untagged
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewportPosition: {x: 0, y: 0, z: 0}
   onBoundsExit: 0
---- !u!114 &522214903367679380
+--- !u!114 &1248826457360501029
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,11 +126,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4269517765187913364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cbfa6b13050d5b48b1f9baa13385e61, type: 3}
+  m_Script: {fileID: 11500000, guid: e416e2e9c32c4884888e60a280a5c637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _wrap: {fileID: 0}
   outOfBounds: 1
+  moveDirection: {x: 3, y: 0}
 --- !u!1 &8679182512415723403
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,13 +157,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8679182512415723403}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2271073275117113575}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &7779319254528591175
 SpriteRenderer:
   m_ObjectHideFlags: 0

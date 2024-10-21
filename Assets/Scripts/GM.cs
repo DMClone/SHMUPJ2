@@ -51,7 +51,6 @@ public class GM : MonoBehaviour
     IEnumerator ProgressRound(int roundInterval)
     {
         SpawnRound();
-        Debug.Log(roundInterval);
         yield return new WaitForSeconds(roundInterval);
         if (waves[currentWave - 1].rounds.Length > currentRound)
         {
@@ -64,6 +63,8 @@ public class GM : MonoBehaviour
     {
         for (int i = 0; i < waves[currentWave - 1].rounds[currentRound - 1].enemyOneCount; i++)
         {
+            int spawnOffset = Random.Range(-5, 5);
+            Instantiate(enemies[0], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
             Debug.Log("I am enemy " + (i + 1) + " from round " + (currentRound));
             enemiesAlive++;
         }
