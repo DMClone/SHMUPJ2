@@ -8,9 +8,9 @@ public class UnitStats : MonoBehaviour
 {
     public bool isPlayer;
     public GameObject projectile;
-    public int health;
-    public int damage;
-    public int projectileCountPerShot;
+    public int health = 1;
+    public int damage = 1;
+    public int projectileCountPerShot = 1;
     [Range(0, 1)] public float spreadOffset;
 
     public void TakeDamage(int damage)

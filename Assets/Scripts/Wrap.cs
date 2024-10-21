@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class Wrap : MonoBehaviour
 {
+    public Vector3 viewportPosition;
+
+    public enum onBoundsExitEvents
+    {
+        Nothing,
+        Wrap,
+        DestroySelf,
+    }
+
+    public onBoundsExitEvents onBoundsExit;
+
     private void FixedUpdate()
     {
-        Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+        viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
 
         Vector3 moveAdjust = Vector3.zero;
-        if (viewportPosition.x < 0)
+
+        if (onBoundsExit == onBoundsExitEvents.DestroySelf && (viewportPosition.x <= 0
+        || viewportPosition.x >= 1 || viewportPosition.y <= 0 || viewportPosition.y >= 1))
         {
-            moveAdjust.x += 1;
+            Destroy(gameObject);
+        }
+        else if (viewportPosition.x < 0)
+        {
+            if (onBoundsExit == onBoundsExitEvents.Wrap)
+            {
+                moveAdjust.x += 1;
+            }
         }
         else if (viewportPosition.x > 1)
         {
