@@ -131,6 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wrap: {fileID: 0}
   outOfBounds: 1
+  viewportYStop: 0.5
+  minViewportYStop: 0.695
+  maxViewportYStop: 0.882
   moveDirection: {x: 3, y: 0}
 --- !u!1 &8679182512415723403
 GameObject:

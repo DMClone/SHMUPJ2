@@ -5476,8 +5476,8 @@ MonoBehaviour:
   - rounds:
     - enemyOneCount: 6
       enemyTwoCount: 9
-      spawnInterval: 3
-    - enemyOneCount: 6
+      spawnInterval: 7
+    - enemyOneCount: 8
       enemyTwoCount: 9
       spawnInterval: 3
   - rounds:
@@ -5550,7 +5550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 7
 --- !u!114 &998705856
 MonoBehaviour:
   m_ObjectHideFlags: 0

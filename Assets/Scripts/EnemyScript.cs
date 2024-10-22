@@ -9,7 +9,9 @@ public class EnemyScript : MonoBehaviour
     public Wrap _wrap;
     public bool outOfBounds;
     [Tooltip("At which Y point to stop going downwards")]
-    [Range(0.5f, 1f)] public float viewportYStop;
+    public float viewportYStop;
+    [Range(0, 1f)] public float minViewportYStop;
+    [Range(0, 1f)] public float maxViewportYStop;
 
     protected UnityEvent event_EnterBounds;
 
@@ -18,6 +20,7 @@ public class EnemyScript : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _wrap = GetComponent<Wrap>();
+        viewportYStop = Random.Range(minViewportYStop, maxViewportYStop);
 
         if (event_EnterBounds == null)
         {
@@ -28,7 +31,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     public virtual void FixedUpdate()
     {
-        if (_wrap.viewportPosition.y >= 0.85f && outOfBounds)
+        if (_wrap.viewportPosition.y >= viewportYStop && outOfBounds)
         {
             _rb.velocity = new Vector2(0, -2);
         }

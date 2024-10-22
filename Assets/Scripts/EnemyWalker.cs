@@ -8,14 +8,12 @@ public class EnemyWalker : EnemyScript
     [Tooltip("X is speed")]
     public Vector2 moveDirection;
 
-    // Update is called once per frame
-
     public override void Start()
     {
         base.Start();
 
         event_EnterBounds.AddListener(StartMovement);
-        if (Random.Range(0, 1) == 1)
+        if (Random.Range(0, 2) == 1)
         {
             moveDirection = new Vector2(-moveDirection.x, moveDirection.y);
         }
