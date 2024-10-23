@@ -5474,9 +5474,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - rounds:
-    - enemyOneCount: 6
+    - enemyOneCount: 200
       enemyTwoCount: 9
-      spawnInterval: 7
+      spawnInterval: 3
     - enemyOneCount: 8
       enemyTwoCount: 9
       spawnInterval: 3
@@ -5734,7 +5734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewportPosition: {x: 0, y: 0, z: 0}
-  onBoundsExit: 0
+  onBoundsExit: 1
 --- !u!114 &998705860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5748,11 +5748,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+  isDead: 0
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
   health: 3
   damage: 1
-  projectileCountPerShot: 2
-  spreadOffset: 0.137
+  projectileCountPerShot: 1
+  spreadOffset: 0.125
 --- !u!1 &1712710944
 GameObject:
   m_ObjectHideFlags: 0

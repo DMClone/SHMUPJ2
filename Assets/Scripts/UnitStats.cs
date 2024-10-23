@@ -7,6 +7,7 @@ using UnityEngine;
 public class UnitStats : MonoBehaviour
 {
     public bool isPlayer;
+    [HideInInspector] public bool isDead;
     public GameObject projectile;
     public int health = 1;
     public int damage = 1;
@@ -15,15 +16,23 @@ public class UnitStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (gameObject != null)
         {
-            Destroy(gameObject);
-        }
+            health -= damage;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                if (!isPlayer)
+                {
+                    GM.instance.enemiesAlive--;
+                    Debug.Log("Enemy Died");
+                }
+            }
 
-        if (isPlayer)
-        {
-            GM.instance.Start();
+            if (isPlayer)
+            {
+                GM.instance.Start(); // Set health UI to current health
+            }
         }
     }
 

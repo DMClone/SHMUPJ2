@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public int bulletDamage;
     public float projectileSpeed = 1;
     [HideInInspector] public Vector3 direction;
+    bool isDead;
 
     void Start()
     {
@@ -22,12 +23,14 @@ public class Projectile : MonoBehaviour
         _rb.velocity = direction * 5 * projectileSpeed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer != isPlayerOwned)
+        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer != isPlayerOwned && !isDead && !other.GetComponent<UnitStats>().isDead)
         {
             other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
             Destroy(gameObject);
+            isDead = true;
+            other.GetComponent<UnitStats>().isDead = true;
         }
     }
 }

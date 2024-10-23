@@ -65,7 +65,6 @@ public class GM : MonoBehaviour
         {
             int spawnOffset = Random.Range(-5, 5);
             Instantiate(enemies[0], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
-            Debug.Log("I am enemy " + (i + 1) + " from round " + (currentRound));
             enemiesAlive++;
         }
     }
