@@ -34,5 +34,9 @@ public class EnemyWalker : EnemyScript
     {
         moveDirection = new Vector2(moveDirection.x, moveDirection.y);
         _rb.velocity = moveDirection;
+        if (GetComponent<EnemyShooter>() != null)
+        {
+            GetComponent<EnemyShooter>().StartShooting();
+        }
     }
 }

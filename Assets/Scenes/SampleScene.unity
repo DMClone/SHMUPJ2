@@ -5474,29 +5474,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - rounds:
-    - enemyOneCount: 0
-      enemyTwoCount: 20
-      spawnInterval: 10
+    - enemyOneCount: 1
+      enemyTwoCount: 2
+      enemyThreeCount: 1
+      spawnInterval: 30
     - enemyOneCount: 15
       enemyTwoCount: 4
+      enemyThreeCount: 0
       spawnInterval: 10
   - rounds:
     - enemyOneCount: 6
       enemyTwoCount: 9
+      enemyThreeCount: 0
       spawnInterval: 3
     - enemyOneCount: 6
       enemyTwoCount: 9
+      enemyThreeCount: 0
       spawnInterval: 3
   - rounds:
     - enemyOneCount: 6
       enemyTwoCount: 9
+      enemyThreeCount: 0
       spawnInterval: 3
     - enemyOneCount: 6
       enemyTwoCount: 9
+      enemyThreeCount: 0
       spawnInterval: 3
   enemies:
   - {fileID: 4269517765187913364, guid: 2dd6bd972582c2e4ba67ed29155c43e1, type: 3}
   - {fileID: 6479074306120284984, guid: 69a8d8d96f3a9f344bcee2bb32c774ad, type: 3}
+  - {fileID: 6479074306120284984, guid: 3d096b82aa221224aadada2062790e23, type: 3}
   enemiesAlive: 0
   currentWave: 1
   currentRound: 1
@@ -5751,7 +5758,7 @@ MonoBehaviour:
   isPlayer: 1
   isDead: 0
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
-  health: 3
+  health: 10
   damage: 1
   projectileCountPerShot: 1
   spreadOffset: 0.125

@@ -21,6 +21,7 @@ public class UnitStats : MonoBehaviour
             health -= damage;
             if (health <= 0)
             {
+                isDead = true;
                 Destroy(gameObject);
                 if (!isPlayer)
                 {
@@ -31,7 +32,7 @@ public class UnitStats : MonoBehaviour
 
             if (isPlayer)
             {
-                GM.instance.Start(); // Set health UI to current health
+                GM.instance.RefreshLiveCanvas(); // Set health UI to current health
             }
         }
     }

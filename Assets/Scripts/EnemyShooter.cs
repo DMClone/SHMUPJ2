@@ -18,10 +18,7 @@ public class EnemyShooter : EnemyScript
 
     public override void Start()
     {
-        if (GetComponent<EnemyWalker>() == null)
-        {
-            base.Start();
-        }
+        base.Start();
         event_EnterBounds.AddListener(StartShooting);
         _us = GetComponent<UnitStats>();
         _us.projectileCountPerShot = 1 + Mathf.RoundToInt(GM.instance.currentWave / 2);
@@ -32,12 +29,12 @@ public class EnemyShooter : EnemyScript
 
     }
 
-    private void StartShooting()
+    public void StartShooting()
     {
         StartCoroutine(UnitShooting());
     }
 
-    IEnumerator UnitShooting()
+   public IEnumerator UnitShooting()
     {
         Vector3 shootProjectileTowards;
         if (shootDirection == shootTo.downwards)
@@ -51,5 +48,13 @@ public class EnemyShooter : EnemyScript
         _us.ShootProjectile(shootProjectileTowards);
         yield return new WaitForSeconds(fireRate);
         StartCoroutine(UnitShooting());
+    }
+
+    public override void FixedUpdate()
+    {
+        if (GetComponent<EnemyWalker>() == null)
+        {
+            base.FixedUpdate();
+        }
     }
 }

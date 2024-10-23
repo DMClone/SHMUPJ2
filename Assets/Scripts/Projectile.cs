@@ -31,7 +31,6 @@ public class Projectile : MonoBehaviour
             other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
             Destroy(gameObject);
             isDead = true;
-            other.GetComponent<UnitStats>().isDead = true;
         }
     }
 }

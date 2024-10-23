@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.EditorTools;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class GM : MonoBehaviour
     public static GM instance;
 
     [SerializeField] public PlaneInput _input;
+    private Coroutine waveCoroutine;
 
 
     [System.Serializable]
@@ -22,6 +24,7 @@ public class GM : MonoBehaviour
     {
         public int enemyOneCount;
         public int enemyTwoCount;
+        public int enemyThreeCount;
         [Tooltip("Time for the next round")]
         public int spawnInterval = 20;
     }
@@ -45,7 +48,7 @@ public class GM : MonoBehaviour
         _input = new PlaneInput();
         _input.UI.PauseMenu.Enable();
 
-        StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+        waveCoroutine = StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
     }
 
     IEnumerator ProgressRound(int roundInterval)
@@ -55,7 +58,7 @@ public class GM : MonoBehaviour
         if (waves[currentWave - 1].rounds.Length > currentRound)
         {
             currentRound++;
-            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+            waveCoroutine = StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
         }
     }
 
@@ -73,9 +76,20 @@ public class GM : MonoBehaviour
             Instantiate(enemies[1], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
             enemiesAlive++;
         }
+        for (int i = 0; i < waves[currentWave - 1].rounds[currentRound - 1].enemyThreeCount; i++)
+        {
+            int spawnOffset = Random.Range(-5, 5);
+            Instantiate(enemies[2], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
+            enemiesAlive++;
+        }
     }
 
     public void Start()
+    {
+        RefreshLiveCanvas();
+    }
+
+    public void RefreshLiveCanvas()
     {
         LivesCanvas.instance.StartUp(PlayerPlane.instance.gameObject.GetComponent<UnitStats>().health);
     }
@@ -98,9 +112,15 @@ public class GM : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (waves[currentWave - 1].rounds.Length == currentRound && waves.Length >= currentWave && enemiesAlive <= 0)
+        if (waves[currentWave - 1].rounds.Length > currentRound && enemiesAlive <= 0)
+        {
+            currentRound++;
+            StopCoroutine(waveCoroutine);
+            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+        }
+        else if (waves[currentWave - 1].rounds.Length == currentRound && waves.Length >= currentWave && enemiesAlive <= 0)
         {
             currentWave++;
             currentRound = 1;

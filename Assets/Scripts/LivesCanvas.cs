@@ -24,6 +24,14 @@ public class LivesCanvas : MonoBehaviour
 
     public void StartUp(int livesGM)
     {
+        if (livesInCanvas.Count != 0)
+        {
+            for (int i = 0; i < livesInCanvas.Count; i++)
+            {
+                Destroy(livesInCanvas[i]);
+            }
+            livesInCanvas.Clear();
+        }
         for (int i = 0; i < livesGM; i++)
         {
             GameObject AddedImage = Instantiate(life, new Vector3(350 * i + 250, 90, 0), Quaternion.identity, transform);
