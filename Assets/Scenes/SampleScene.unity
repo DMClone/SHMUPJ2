@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 405104003}
   - component: {fileID: 405104002}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5476,30 +5476,30 @@ MonoBehaviour:
   - rounds:
     - enemyOneCount: 1
       enemyTwoCount: 2
-      enemyThreeCount: 1
+      enemyThreeCount: 4
+      spawnInterval: 30
+    - enemyOneCount: 3
+      enemyTwoCount: 4
+      enemyThreeCount: 4
+      spawnInterval: 10
+  - rounds:
+    - enemyOneCount: 1
+      enemyTwoCount: 2
+      enemyThreeCount: 4
+      spawnInterval: 5
+    - enemyOneCount: 3
+      enemyTwoCount: 4
+      enemyThreeCount: 4
+      spawnInterval: 5
+  - rounds:
+    - enemyOneCount: 1
+      enemyTwoCount: 2
+      enemyThreeCount: 10
       spawnInterval: 30
     - enemyOneCount: 15
       enemyTwoCount: 4
       enemyThreeCount: 0
       spawnInterval: 10
-  - rounds:
-    - enemyOneCount: 6
-      enemyTwoCount: 9
-      enemyThreeCount: 0
-      spawnInterval: 3
-    - enemyOneCount: 6
-      enemyTwoCount: 9
-      enemyThreeCount: 0
-      spawnInterval: 3
-  - rounds:
-    - enemyOneCount: 6
-      enemyTwoCount: 9
-      enemyThreeCount: 0
-      spawnInterval: 3
-    - enemyOneCount: 6
-      enemyTwoCount: 9
-      enemyThreeCount: 0
-      spawnInterval: 3
   enemies:
   - {fileID: 4269517765187913364, guid: 2dd6bd972582c2e4ba67ed29155c43e1, type: 3}
   - {fileID: 6479074306120284984, guid: 69a8d8d96f3a9f344bcee2bb32c774ad, type: 3}
@@ -5760,7 +5760,7 @@ MonoBehaviour:
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
   health: 10
   damage: 1
-  projectileCountPerShot: 1
+  projectileCountPerShot: 5
   spreadOffset: 0.125
 --- !u!1 &1712710944
 GameObject:

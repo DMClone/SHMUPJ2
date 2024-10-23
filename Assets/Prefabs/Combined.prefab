@@ -104,7 +104,7 @@ MonoBehaviour:
   health: 3
   damage: 1
   projectileCountPerShot: 1
-  spreadOffset: 0
+  spreadOffset: 0.1
 --- !u!114 &5902467444566792732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   outOfBounds: 1
   minViewportYStop: 0.795
   maxViewportYStop: 0.912
-  fireRate: 1
+  fireRate: 2
 --- !u!1 &7967684528937458070
 GameObject:
   m_ObjectHideFlags: 0

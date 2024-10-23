@@ -22,6 +22,7 @@ public class EnemyShooter : EnemyScript
         event_EnterBounds.AddListener(StartShooting);
         _us = GetComponent<UnitStats>();
         _us.projectileCountPerShot = 1 + Mathf.RoundToInt(GM.instance.currentWave / 2);
+        fireRate = fireRate * 1 + 0.05f - (0.05f * GM.instance.currentWave);
         if (Random.Range(0, 2) == 1)
         {
             shootDirection = shootTo.toPlayer;
@@ -37,7 +38,7 @@ public class EnemyShooter : EnemyScript
    public IEnumerator UnitShooting()
     {
         Vector3 shootProjectileTowards;
-        if (shootDirection == shootTo.downwards)
+        if (shootDirection == shootTo.downwards && GetComponent<EnemyWalker>() == null)
         {
             shootProjectileTowards = -transform.up;
         }
