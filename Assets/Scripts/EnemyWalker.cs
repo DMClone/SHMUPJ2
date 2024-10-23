@@ -11,9 +11,9 @@ public class EnemyWalker : EnemyScript
     public override void Start()
     {
         base.Start();
+        event_EnterBounds.AddListener(StartMovement);
         moveDirection.x = moveDirection.x * 1 + (GM.instance.currentWave / 4);
 
-        event_EnterBounds.AddListener(StartMovement);
         if (Random.Range(0, 2) == 1)
         {
             moveDirection = new Vector2(-moveDirection.x, moveDirection.y);

@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        transform.up = direction;
     }
 
     private void FixedUpdate()

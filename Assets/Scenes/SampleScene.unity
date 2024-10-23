@@ -5474,12 +5474,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - rounds:
-    - enemyOneCount: 200
-      enemyTwoCount: 9
-      spawnInterval: 3
-    - enemyOneCount: 8
-      enemyTwoCount: 9
-      spawnInterval: 3
+    - enemyOneCount: 0
+      enemyTwoCount: 20
+      spawnInterval: 10
+    - enemyOneCount: 15
+      enemyTwoCount: 4
+      spawnInterval: 10
   - rounds:
     - enemyOneCount: 6
       enemyTwoCount: 9
@@ -5496,6 +5496,7 @@ MonoBehaviour:
       spawnInterval: 3
   enemies:
   - {fileID: 4269517765187913364, guid: 2dd6bd972582c2e4ba67ed29155c43e1, type: 3}
+  - {fileID: 6479074306120284984, guid: 69a8d8d96f3a9f344bcee2bb32c774ad, type: 3}
   enemiesAlive: 0
   currentWave: 1
   currentRound: 1

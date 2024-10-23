@@ -61,7 +61,7 @@ public class PlayerPlane : MonoBehaviour
     {
         if (callbackContext.performed)
         {
-            _us.ShootProjectile();
+            _us.ShootProjectile(transform.up);
         }
     }
 

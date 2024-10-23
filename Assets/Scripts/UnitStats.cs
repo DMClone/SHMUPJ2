@@ -36,16 +36,22 @@ public class UnitStats : MonoBehaviour
         }
     }
 
-    public void ShootProjectile()
+    public void ShootProjectile(Vector3 projectileDirection)
     {
         for (int i = 0; i < projectileCountPerShot; i++)
         {
             Projectile shotProjectile =
             Instantiate(projectile, new Vector2(transform.position.x - spreadOffset * (projectileCountPerShot - 1) + spreadOffset * 2 * i, transform.position.y), quaternion.identity).gameObject.GetComponent<Projectile>();
-            shotProjectile.transform.rotation = gameObject.transform.rotation;
             shotProjectile.isPlayerOwned = isPlayer;
-            shotProjectile.direction = transform.up;
             shotProjectile.bulletDamage = damage;
+            if (projectileDirection == null)
+            {
+            Debug.Log("Insert a rotation to the bullet");
+            }
+            else
+            {
+                shotProjectile.direction = projectileDirection.normalized;
+            }
         }
     }
 }

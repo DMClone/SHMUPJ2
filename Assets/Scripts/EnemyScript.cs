@@ -6,10 +6,9 @@ using UnityEngine.Events;
 public class EnemyScript : MonoBehaviour
 {
     protected Rigidbody _rb;
-    public Wrap _wrap;
+    protected Wrap _wrap;
     public bool outOfBounds;
-    [Tooltip("At which Y point to stop going downwards")]
-    public float viewportYStop;
+    protected float viewportYStop;
     [Range(0, 1f)] public float minViewportYStop;
     [Range(0, 1f)] public float maxViewportYStop;
 

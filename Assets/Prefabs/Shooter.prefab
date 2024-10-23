@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1172136061524425572}
   - component: {fileID: 7257239553487116588}
   - component: {fileID: 5902467444566792732}
-  - component: {fileID: 1185580308943189721}
+  - component: {fileID: 4411447617851522996}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
+  isDead: 0
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
   health: 3
   damage: 1
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewportPosition: {x: 0, y: 0, z: 0}
   onBoundsExit: 0
---- !u!114 &1185580308943189721
+--- !u!114 &4411447617851522996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,12 +127,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6479074306120284984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e416e2e9c32c4884888e60a280a5c637, type: 3}
+  m_Script: {fileID: 11500000, guid: 11bd7a605d5d30a45a2dad969067985b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _wrap: {fileID: 0}
   outOfBounds: 1
-  moveDirection: {x: 3, y: 0}
+  minViewportYStop: 0.795
+  maxViewportYStop: 0.912
+  fireRate: 1
 --- !u!1 &8106851898404159535
 GameObject:
   m_ObjectHideFlags: 0

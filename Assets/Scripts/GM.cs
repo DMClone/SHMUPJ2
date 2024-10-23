@@ -67,6 +67,12 @@ public class GM : MonoBehaviour
             Instantiate(enemies[0], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
             enemiesAlive++;
         }
+        for (int i = 0; i < waves[currentWave - 1].rounds[currentRound - 1].enemyTwoCount; i++)
+        {
+            int spawnOffset = Random.Range(-5, 5);
+            Instantiate(enemies[1], new Vector3(spawnOffset, transform.position.y, 0), Quaternion.identity);
+            enemiesAlive++;
+        }
     }
 
     public void Start()
