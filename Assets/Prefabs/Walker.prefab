@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4269517765187913364}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.28, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f67f905e414db4cabb802a8baeb534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticles: {fileID: 1142728090868740459, guid: d73ee53886607c6459a1d4b5e6bd27a3, type: 3}
   isPlayer: 0
+  isDead: 0
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
   health: 3
   damage: 1
@@ -129,9 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e416e2e9c32c4884888e60a280a5c637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wrap: {fileID: 0}
   outOfBounds: 1
-  viewportYStop: 0.5
   minViewportYStop: 0.695
   maxViewportYStop: 0.882
   moveDirection: {x: 3, y: 0}

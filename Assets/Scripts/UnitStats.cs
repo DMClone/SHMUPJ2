@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UnitStats : MonoBehaviour
 {
+    [SerializeField] private GameObject deathParticles;
     public bool isPlayer;
     [HideInInspector] public bool isDead;
     public GameObject projectile;
@@ -23,6 +24,7 @@ public class UnitStats : MonoBehaviour
             {
                 isDead = true;
                 Destroy(gameObject);
+                Instantiate(deathParticles, transform.position, Quaternion.identity);
                 if (!isPlayer)
                 {
                     GM.instance.enemiesAlive--;
