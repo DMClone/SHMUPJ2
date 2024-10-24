@@ -28,7 +28,6 @@ public class UnitStats : MonoBehaviour
                 if (!isPlayer)
                 {
                     GM.instance.enemiesAlive--;
-                    Debug.Log("Enemy Died");
                 }
             }
 

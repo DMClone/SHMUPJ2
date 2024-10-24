@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerOwned: 0
   bulletDamage: 0
-  projectileSpeed: 2
+  projectileSpeed: 1.5
   direction: {x: 0, y: 0, z: 0}
 --- !u!114 &-5750121176273244040
 MonoBehaviour:

@@ -12,6 +12,8 @@ public class PlayerPlane : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] public PlaneInput _input;
     private UnitStats _us;
+    [SerializeField] private Sprite[] shipSprites;
+    private int shipLevel = 1;
     private Vector2 moveDirection;
     [SerializeField][Range(1, 10)] private int moveSpeed;
 
@@ -76,5 +78,12 @@ public class PlayerPlane : MonoBehaviour
     void FixedUpdate()
     {
         _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    public void UpgradeShip()
+    {
+        _us.projectileCountPerShot++;
+        shipLevel++;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shipSprites[shipLevel - 1];
     }
 }

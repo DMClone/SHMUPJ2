@@ -51,6 +51,7 @@ public class GM : MonoBehaviour
         waveCoroutine = StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
     }
 
+    #region WaveLogic
     IEnumerator ProgressRound(int roundInterval)
     {
         SpawnRound();
@@ -84,6 +85,30 @@ public class GM : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (waves[currentWave - 1].rounds.Length > currentRound && waves.Length >= currentWave - 1 && enemiesAlive <= 0)
+        {
+            currentRound++;
+            StopCoroutine(waveCoroutine);
+            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+            Debug.Log("Defeated enemies too early");
+        }
+        else if (waves[currentWave - 1].rounds.Length == currentRound && waves.Length > currentWave && enemiesAlive <= 0)
+        {
+            currentWave++;
+            currentRound = 1;
+            StopCoroutine(waveCoroutine);
+            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+            Debug.Log("Started new wave");
+        }
+        else if (waves.Length == currentWave && waves[currentWave - 1].rounds.Length == currentRound)
+        {
+            Debug.Log("We have reached the end of all the waves");
+        }
+    }
+    #endregion
+
     public void Start()
     {
         RefreshLiveCanvas();
@@ -94,6 +119,7 @@ public class GM : MonoBehaviour
         LivesCanvas.instance.StartUp(PlayerPlane.instance.gameObject.GetComponent<UnitStats>().health);
     }
 
+    #region ActionToggles
     private void OnEnable()
     {
         _input.UI.PauseMenu.performed += PauseAction;
@@ -103,6 +129,7 @@ public class GM : MonoBehaviour
     {
         _input.UI.PauseMenu.performed -= PauseAction;
     }
+    #endregion
 
     public void PauseAction(InputAction.CallbackContext callbackContext)
     {
@@ -112,23 +139,4 @@ public class GM : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (waves[currentWave - 1].rounds.Length > currentRound && enemiesAlive <= 0)
-        {
-            currentRound++;
-            StopCoroutine(waveCoroutine);
-            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
-        }
-        else if (waves[currentWave - 1].rounds.Length == currentRound && waves.Length >= currentWave && enemiesAlive <= 0)
-        {
-            currentWave++;
-            currentRound = 1;
-            StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
-        }
-        else if (waves.Length == currentWave && waves[currentWave - 1].rounds.Length == currentRound)
-        {
-            Debug.Log("We have reached the end of all the waves");
-        }
-    }
 }
