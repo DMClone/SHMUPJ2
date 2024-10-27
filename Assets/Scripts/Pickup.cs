@@ -21,15 +21,16 @@ public class Pickup : MonoBehaviour
             switch (pickupType)
             {
                 case (Pickups.Regenerate):
+                other.GetComponent<PlayerPlane>().Regenerate();
                     Debug.Log("Got upgrade: Regenerate");
                     break;
-                    case (Pickups.WeaponUpgrade):
+                case (Pickups.WeaponUpgrade):
                     Debug.Log("Got upgrade: WeaponUpgrade");
                     break;
-                    case (Pickups.ShipUpgrade):
+                case (Pickups.ShipUpgrade):
                     Debug.Log("Got upgrade: ShipUpgrade");
                     break;
-                    case (Pickups.Shield):
+                case (Pickups.Shield):
                     Debug.Log("Got upgrade: Shield");
                     break;
 

@@ -11,9 +11,15 @@ public class UnitStats : MonoBehaviour
     [HideInInspector] public bool isDead;
     public GameObject projectile;
     public int health = 1;
+    public int maxHealth;
     public int damage = 1;
     public int projectileCountPerShot = 1;
     [Range(0, 1)] public float spreadOffset;
+
+    private void Awake()
+    {
+        maxHealth = health;
+    }
 
     public void TakeDamage(int damage)
     {
@@ -48,7 +54,7 @@ public class UnitStats : MonoBehaviour
             shotProjectile.bulletDamage = damage;
             if (projectileDirection == null)
             {
-            Debug.Log("Insert a rotation to the bullet");
+                Debug.Log("Insert a rotation to the bullet");
             }
             else
             {

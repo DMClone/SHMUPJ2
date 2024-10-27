@@ -75,9 +75,27 @@ public class PlayerPlane : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    public void Regenerate()
+    {
+        if (_us.maxHealth < _us.health)
+        {
+            int regenAmount = 4 - GM.instance.currentWave;
+            if (regenAmount < 1)
+            {
+                regenAmount = 1;
+            }
+            _us.health += regenAmount;
+            if (_us.health > _us.maxHealth)
+            {
+                _us.health = _us.maxHealth;
+            }
+            GM.instance.RefreshLiveCanvas(); // Set health UI to current health
+        }
     }
 
     public void UpgradeShip()
