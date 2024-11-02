@@ -33,8 +33,10 @@ public class GM : MonoBehaviour
     private Waves[] waves;
 
     public GameObject[] enemies;
+    public GameObject[] powerups;
 
     public int enemiesAlive;
+    public int enemiesKilled;
     public int currentWave = 1;
     public int currentRound = 1;
 
@@ -52,6 +54,23 @@ public class GM : MonoBehaviour
     }
 
     #region WaveLogic
+
+    public void PowerupSpawnCheck(Vector3 enemyPosition)
+    {
+        switch (enemiesKilled % 100)
+        {
+            case 20:
+            case 40:
+            case 60:
+            case 80:
+                Instantiate(powerups[0], enemyPosition, Quaternion.identity);
+                Debug.Log("Spawned upgrade: Regenerate");
+                break;
+            default:
+                break;
+        }
+    }
+
     IEnumerator ProgressRound(int roundInterval)
     {
         SpawnRound();

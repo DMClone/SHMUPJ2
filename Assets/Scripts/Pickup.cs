@@ -21,8 +21,9 @@ public class Pickup : MonoBehaviour
             switch (pickupType)
             {
                 case (Pickups.Regenerate):
-                other.GetComponent<PlayerPlane>().Regenerate();
+                    other.GetComponent<PlayerPlane>().Regenerate();
                     Debug.Log("Got upgrade: Regenerate");
+                    Destroy(gameObject);
                     break;
                 case (Pickups.WeaponUpgrade):
                     Debug.Log("Got upgrade: WeaponUpgrade");

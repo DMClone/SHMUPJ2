@@ -34,6 +34,8 @@ public class UnitStats : MonoBehaviour
                 if (!isPlayer)
                 {
                     GM.instance.enemiesAlive--;
+                    GM.instance.enemiesKilled++;
+                    GM.instance.PowerupSpawnCheck(transform.position);
                 }
             }
 
@@ -44,6 +46,7 @@ public class UnitStats : MonoBehaviour
         }
     }
 
+    
     public void ShootProjectile(Vector3 projectileDirection)
     {
         for (int i = 0; i < projectileCountPerShot; i++)
