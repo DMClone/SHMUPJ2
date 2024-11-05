@@ -94,7 +94,7 @@ public class PlayerPlane : MonoBehaviour
             {
                 _us.health = _us.maxHealth;
             }
-            GM.instance.RefreshLiveCanvas(); // Set health UI to current health
+            LivesCanvas.instance.UpdateHealthBar(_us.health); // Set health UI to current health
         }
     }
 

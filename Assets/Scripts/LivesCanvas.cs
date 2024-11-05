@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class LivesCanvas : MonoBehaviour
 {
     public static LivesCanvas instance;
 
-    [SerializeField] private GameObject life;
-    private List<GameObject> livesInCanvas;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject healthNumbers;
+
+
+    private int maxHealth;
 
     private void Awake()
     {
@@ -15,27 +20,19 @@ public class LivesCanvas : MonoBehaviour
         {
             instance = this;
         }
+    }
 
-        livesInCanvas = new List<GameObject>();
+    private void Start()
+    {
+        maxHealth = PlayerPlane.instance.GetComponent<UnitStats>().maxHealth;
+        UpdateHealthBar(PlayerPlane.instance.GetComponent<UnitStats>().maxHealth);
     }
 
 
-
-
-    public void StartUp(int livesGM)
+    public void UpdateHealthBar(float lives)
     {
-        if (livesInCanvas.Count != 0)
-        {
-            for (int i = 0; i < livesInCanvas.Count; i++)
-            {
-                Destroy(livesInCanvas[i]);
-            }
-            livesInCanvas.Clear();
-        }
-        for (int i = 0; i < livesGM; i++)
-        {
-            GameObject AddedImage = Instantiate(life, new Vector3(350 * i + 250, 90, 0), Quaternion.identity, transform);
-            livesInCanvas.Add(AddedImage);
-        }
+        Debug.Log(lives);
+        healthBar.GetComponent<Image>().fillAmount = lives / maxHealth;
+        healthNumbers.GetComponent<TextMeshProUGUI>().text = lives + " / " + maxHealth;
     }
 }

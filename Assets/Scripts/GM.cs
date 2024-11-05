@@ -32,6 +32,7 @@ public class GM : MonoBehaviour
     [SerializeField]
     private Waves[] waves;
 
+    public GameObject[] playerShips;
     public GameObject[] enemies;
     public GameObject[] powerups;
 
@@ -46,6 +47,8 @@ public class GM : MonoBehaviour
         {
             instance = this;
         }
+
+        Instantiate(playerShips[0]);
 
         _input = new PlaneInput();
         _input.UI.PauseMenu.Enable();
@@ -127,16 +130,6 @@ public class GM : MonoBehaviour
         }
     }
     #endregion
-
-    public void Start()
-    {
-        RefreshLiveCanvas();
-    }
-
-    public void RefreshLiveCanvas()
-    {
-        LivesCanvas.instance.StartUp(PlayerPlane.instance.gameObject.GetComponent<UnitStats>().health);
-    }
 
     #region ActionToggles
     private void OnEnable()
