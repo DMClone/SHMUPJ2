@@ -9,4 +9,16 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void ResetPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    private void Update() {
+        if (PlayerPrefs.HasKey("SelectedClass"))
+        {
+            Debug.Log(PlayerPrefs.GetString("SelectedClass"));
+        }
+    }
 }
