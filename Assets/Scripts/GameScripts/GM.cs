@@ -48,7 +48,21 @@ public class GM : MonoBehaviour
             instance = this;
         }
 
-        Instantiate(playerShips[0]);
+        switch (PlayerPrefs.GetString("SelectedClass"))
+        {
+            case "Starter":
+                Instantiate(playerShips[0]);
+                break;
+            case "Hunter":
+                Instantiate(playerShips[1]);
+                break;
+            case "Builder":
+                Instantiate(playerShips[2]);
+                break;
+            default:
+                Instantiate(playerShips[0]);
+                break;
+        }
 
         _input = new PlaneInput();
         _input.UI.PauseMenu.Enable();
@@ -60,14 +74,17 @@ public class GM : MonoBehaviour
 
     public void PowerupSpawnCheck(Vector3 enemyPosition)
     {
-        switch (enemiesKilled % 100)
+        switch (enemiesKilled % 50)
         {
-            case 20:
-            case 40:
-            case 60:
-            case 80:
+            case 0:
+            case 25:
                 Instantiate(powerups[0], enemyPosition, Quaternion.identity);
                 Debug.Log("Spawned upgrade: Regenerate");
+                break;
+            case 20:
+            case 45:
+                Instantiate(powerups[1], enemyPosition, Quaternion.identity);
+                Debug.Log("Spawned upgrade: ShipUpgrade");
                 break;
             default:
                 break;

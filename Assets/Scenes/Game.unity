@@ -5505,6 +5505,8 @@ MonoBehaviour:
       spawnInterval: 5
   playerShips:
   - {fileID: 3321041429653319636, guid: 15d2c4308176a8e43ab1ddf1ff498ecc, type: 3}
+  - {fileID: 927308617085608516, guid: 0fd9b3a0c027e134faf86158509f33da, type: 3}
+  - {fileID: 4290363680051058946, guid: 7c85fe2964d8bbb4ab6908be9dbbd532, type: 3}
   enemies:
   - {fileID: 4269517765187913364, guid: 2dd6bd972582c2e4ba67ed29155c43e1, type: 3}
   - {fileID: 6479074306120284984, guid: 69a8d8d96f3a9f344bcee2bb32c774ad, type: 3}
