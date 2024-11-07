@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GM : MonoBehaviour
 {
@@ -182,12 +183,13 @@ public class GM : MonoBehaviour
 
     public void GameEnd()
     {
+        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + score / 50);
         StartCoroutine(EndGame());
 
         IEnumerator EndGame()
         {
             yield return new WaitForSeconds(1.4f);
-            Time.timeScale = 0;
+            SceneManager.LoadScene("Menu");
         }
     }
 }
