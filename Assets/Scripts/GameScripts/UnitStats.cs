@@ -31,17 +31,21 @@ public class UnitStats : MonoBehaviour
             if (health <= 0)
             {
                 isDead = true;
-                Destroy(gameObject);
                 Instantiate(deathParticles, transform.position, Quaternion.identity);
                 if (!isPlayer)
                 {
                     GM.instance.enemiesAlive--;
                     GM.instance.enemiesKilled++;
                     GM.instance.PowerupSpawnCheck(transform.position);
+                    Destroy(gameObject);
+                }
+                else if (GetComponent<Sentry>() != null)
+                {
+                    Destroy(gameObject);
                 }
             }
 
-            if (isPlayer)
+            if (isPlayer && GetComponent<Sentry>() == null)
             {
                 LivesCanvas.instance.UpdateHealthBar(health); ; // Set health UI to current health
                 StartCoroutine(Invincibility());
@@ -76,6 +80,10 @@ public class UnitStats : MonoBehaviour
             else
             {
                 shotProjectile.direction = projectileDirection.normalized;
+            }
+            if (GetComponent<Sentry>() != null)
+            {
+                shotProjectile.positionOffset = 0.55f;
             }
         }
         projectileCountPerShot /= projectileMultiplier;

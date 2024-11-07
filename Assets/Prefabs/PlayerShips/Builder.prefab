@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1715102187555735554}
   - component: {fileID: 3088226299151232868}
   - component: {fileID: 576403540373017170}
-  - component: {fileID: 4120898068326465592}
+  - component: {fileID: -3218995456551646189}
   - component: {fileID: 6298431940243728967}
   - component: {fileID: 1391487224928484499}
   - component: {fileID: 2599482244129603587}
@@ -86,7 +86,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4120898068326465592
+--- !u!114 &-3218995456551646189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4290363680051058946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d572d8f6ea9a2a4c851639d51c3771a, type: 3}
+  m_Script: {fileID: 11500000, guid: 02c6b9ff9a3c5e14b8aaf1cfa16438b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
@@ -103,8 +103,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f475cfbb6f8f6d148bac825b3c9833f0, type: 3}
   - {fileID: 21300000, guid: 33202fea748aed444b5f02bf4316e83e, type: 3}
   - {fileID: 21300000, guid: cd0deca24085cb34db115be746940f56, type: 3}
-  moveSpeed: 7
-  specialCooldown: 0
+  moveSpeed: 5
+  sentry: {fileID: 3527916318517705982, guid: fe5b6721c45addb4b8517465035c3ae3, type: 3}
 --- !u!114 &6298431940243728967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4120898068326465592}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: MoveAction
         m_Mode: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4120898068326465592}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: FireAction
         m_Mode: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
     m_ActionName: Player/SpecialFire
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4120898068326465592}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: PauseAction
         m_Mode: 0

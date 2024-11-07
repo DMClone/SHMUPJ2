@@ -11,12 +11,14 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public int bulletDamage;
     public float projectileSpeed = 1;
     [HideInInspector] public Vector3 direction;
+    public float positionOffset;
     bool isDead;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         transform.up = direction;
+        transform.position += transform.up * positionOffset;
     }
 
     private void FixedUpdate()
