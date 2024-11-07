@@ -68,14 +68,12 @@ public class ClassButton : MonoBehaviour
 
     public void SelectHunter()
     {
-        PlayerPrefs.SetString("SelectedClass", "Hunter");
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Equipped";
         transform.parent.GetComponent<CoinScript>().HunterSelected();
     }
 
     public void DeSelectHunter(bool selectStarter)
     {
-        Debug.Log("Hunter Actually Deselected");
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Unlocked";
         if (selectStarter)
         {
@@ -94,7 +92,6 @@ public class ClassButton : MonoBehaviour
 
     public void SelectBuilder()
     {
-        Debug.Log("Builder Actually Selected");
         PlayerPrefs.SetString("SelectedClass", "Builder");
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Equipped";
         transform.parent.GetComponent<CoinScript>().BuilderSelected();
@@ -102,7 +99,6 @@ public class ClassButton : MonoBehaviour
 
     public void DeSelectBuilder(bool selectStarter)
     {
-        Debug.Log("Builder Actually Deselected");
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Unlocked";
         if (selectStarter)
         {

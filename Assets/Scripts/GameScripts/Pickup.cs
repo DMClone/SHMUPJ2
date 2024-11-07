@@ -18,13 +18,15 @@ public class Pickup : MonoBehaviour
         {
             switch (pickupType)
             {
-                case (Pickups.Regenerate):
+                case Pickups.Regenerate:
                     other.GetComponent<PlayerPlane>().Regenerate();
                     Debug.Log("Got upgrade: Regenerate");
                     Destroy(gameObject);
                     break;
-                case (Pickups.ShipUpgrade):
+                case Pickups.ShipUpgrade:
+                    other.GetComponent<PlayerPlane>().UpgradeShip();
                     Debug.Log("Got upgrade: ShipUpgrade");
+                    Destroy(gameObject);
                     break;
                 default:
                     break;

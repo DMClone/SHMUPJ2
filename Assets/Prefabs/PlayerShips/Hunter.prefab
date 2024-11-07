@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f9a0b5ceca4c5194fb6dd5768590d2d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed37bbe48ffda36409afef2b8304f138, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,10 +95,11 @@ GameObject:
   - component: {fileID: 8405542534004402055}
   - component: {fileID: 925423750533323235}
   - component: {fileID: 4196685724429434737}
-  - component: {fileID: 6695517183224195992}
+  - component: {fileID: -6648687353740924153}
   - component: {fileID: 831487708697413021}
   - component: {fileID: 7954994679038075196}
   - component: {fileID: 4121765123929859740}
+  - component: {fileID: 2247661129601689041}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -170,7 +171,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6695517183224195992
+--- !u!114 &-6648687353740924153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 927308617085608516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d572d8f6ea9a2a4c851639d51c3771a, type: 3}
+  m_Script: {fileID: 11500000, guid: 44396bcd76780c74eae6ccdd1b45befd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
@@ -187,7 +188,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ed37bbe48ffda36409afef2b8304f138, type: 3}
   - {fileID: 21300000, guid: a3c43fdaa7025b249a62cd07072009da, type: 3}
   - {fileID: 21300000, guid: e1e0f6650c5b2314fb0e17e19bc0d569, type: 3}
-  moveSpeed: 7
+  moveSpeed: 10
+  rotationTime: 0
 --- !u!114 &831487708697413021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6695517183224195992}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: MoveAction
         m_Mode: 0
@@ -231,7 +233,7 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6695517183224195992}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: FireAction
         m_Mode: 0
@@ -291,7 +293,7 @@ MonoBehaviour:
     m_ActionName: Player/SpecialFire
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6695517183224195992}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerPlane, Assembly-CSharp
         m_MethodName: PauseAction
         m_Mode: 0
@@ -342,7 +344,28 @@ MonoBehaviour:
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
   health: 3
   maxHealth: 0
-  damage: 1
+  damage: 2
   projectileCountPerShot: 1
   spreadOffset: 0.125
   invincibilityTime: 1
+--- !u!95 &2247661129601689041
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927308617085608516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f6cdb5d8df312e4bad2d262edd7d582, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

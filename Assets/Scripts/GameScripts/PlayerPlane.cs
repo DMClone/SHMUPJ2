@@ -9,15 +9,16 @@ public class PlayerPlane : MonoBehaviour
 {
     public static PlayerPlane instance;
 
-    [SerializeField] private Rigidbody _rb;
-    [SerializeField] public PlaneInput _input;
-    private UnitStats _us;
-    [SerializeField] private Sprite[] shipSprites;
-    private int shipLevel = 1;
-    private Vector2 moveDirection;
-    [SerializeField][Range(1, 10)] private int moveSpeed;
+    [SerializeField] protected Rigidbody _rb;
+    [SerializeField] protected PlaneInput _input;
+    protected UnitStats _us;
+    [SerializeField] protected Sprite[] shipSprites;
+    protected int shipLevel = 1;
+    protected Vector2 moveDirection;
+    [SerializeField][Range(1, 10)] protected int moveSpeed;
+    protected bool specialOnCooldown;
 
-    private void Awake()
+    public virtual void Awake()
     {
         if (instance == null)
         {
@@ -27,43 +28,51 @@ public class PlayerPlane : MonoBehaviour
         _input = new PlaneInput();
         _input.Player.Move.Enable();
         _input.Player.Fire.Enable();
+        _input.Player.SpecialFire.Enable();
 
         _rb = GetComponent<Rigidbody>();
         _us = GetComponent<UnitStats>();
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         _input.Player.Move.performed += MoveAction;
         _input.Player.Move.canceled += MoveStop;
         _input.Player.Fire.performed += FireAction;
+        _input.Player.SpecialFire.performed += SpecialAction;
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         _input.Player.Move.performed -= MoveAction;
         _input.Player.Move.canceled -= MoveStop;
         _input.Player.Fire.performed -= FireAction;
+        _input.Player.SpecialFire.performed -= SpecialAction;
     }
 
-    public void MoveAction(InputAction.CallbackContext callbackContext)
+    public virtual void MoveAction(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
         {
             moveDirection = callbackContext.ReadValue<Vector2>();
         }
     }
-    public void MoveStop(InputAction.CallbackContext callbackContext)
+
+    public void FixedUpdate()
+    {
+        _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+    public virtual void MoveStop(InputAction.CallbackContext callbackContext)
     {
         moveDirection = Vector2.zero;
-
     }
 
     public void FireAction(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
         {
-            _us.ShootProjectile(transform.up);
+            _us.ShootProjectile(transform.up, 1);
         }
     }
 
@@ -75,33 +84,39 @@ public class PlayerPlane : MonoBehaviour
         }
     }
 
-    protected void FixedUpdate()
+    public void SpecialAction(InputAction.CallbackContext callbackContext)
     {
-        _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        Debug.Log("Special");
+        if (callbackContext.performed && !specialOnCooldown)
+        {
+            StartCoroutine(Special());
+        }
+    }
+
+   public virtual IEnumerator Special()
+    {
+        specialOnCooldown = true;
+        _us.ShootProjectile(transform.up, 2);
+        yield return new WaitForSeconds(10f);
+        specialOnCooldown = false;
     }
 
     public void Regenerate()
     {
-        if (_us.maxHealth < _us.health)
+        if (_us.health < _us.maxHealth)
         {
-            int regenAmount = 4 - GM.instance.currentWave;
-            if (regenAmount < 1)
-            {
-                regenAmount = 1;
-            }
-            _us.health += regenAmount;
-            if (_us.health > _us.maxHealth)
-            {
-                _us.health = _us.maxHealth;
-            }
+            _us.health++;
             LivesCanvas.instance.UpdateHealthBar(_us.health); // Set health UI to current health
         }
     }
 
     public void UpgradeShip()
     {
-        _us.projectileCountPerShot++;
-        shipLevel++;
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shipSprites[shipLevel - 1];
+        if (shipLevel < shipSprites.Length)
+        {
+            _us.projectileCountPerShot++;
+            shipLevel++;
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = shipSprites[shipLevel - 1];
+        }
     }
 }

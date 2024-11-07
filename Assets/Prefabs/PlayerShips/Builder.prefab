@@ -100,10 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 0}
   shipSprites:
-  - {fileID: 21300000, guid: ed37bbe48ffda36409afef2b8304f138, type: 3}
-  - {fileID: 21300000, guid: a3c43fdaa7025b249a62cd07072009da, type: 3}
-  - {fileID: 21300000, guid: e1e0f6650c5b2314fb0e17e19bc0d569, type: 3}
+  - {fileID: 21300000, guid: f475cfbb6f8f6d148bac825b3c9833f0, type: 3}
+  - {fileID: 21300000, guid: 33202fea748aed444b5f02bf4316e83e, type: 3}
+  - {fileID: 21300000, guid: cd0deca24085cb34db115be746940f56, type: 3}
   moveSpeed: 7
+  specialCooldown: 0
 --- !u!114 &6298431940243728967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,11 +257,11 @@ MonoBehaviour:
   isPlayer: 1
   isDead: 0
   projectile: {fileID: 3247168085936376754, guid: e10be83f57ebee64d8477bf290c91ee7, type: 3}
-  health: 3
+  health: 10
   maxHealth: 0
   damage: 1
-  projectileCountPerShot: 1
-  spreadOffset: 0.125
+  projectileCountPerShot: 3
+  spreadOffset: 0.35
   invincibilityTime: 1
 --- !u!1 &9085275539195065602
 GameObject:
@@ -273,7 +274,7 @@ GameObject:
   - component: {fileID: 3265208449704182712}
   - component: {fileID: 6338535899884196680}
   m_Layer: 0
-  m_Name: ship_0009
+  m_Name: ship_0004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,7 +336,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9a390021cff8f0547aca09bbbd463d95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f475cfbb6f8f6d148bac825b3c9833f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

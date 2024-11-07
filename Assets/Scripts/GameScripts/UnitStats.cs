@@ -49,7 +49,7 @@ public class UnitStats : MonoBehaviour
         }
     }
 
-    IEnumerator Invincibility()
+    public IEnumerator Invincibility()
     {
         invincible = true;
         SpriteRenderer _SR = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
@@ -60,8 +60,9 @@ public class UnitStats : MonoBehaviour
         invincible = false;
     }
 
-    public void ShootProjectile(Vector3 projectileDirection)
+    public void ShootProjectile(Vector3 projectileDirection, int projectileMultiplier)
     {
+        projectileCountPerShot *= projectileMultiplier;
         for (int i = 0; i < projectileCountPerShot; i++)
         {
             Projectile shotProjectile =
@@ -77,5 +78,6 @@ public class UnitStats : MonoBehaviour
                 shotProjectile.direction = projectileDirection.normalized;
             }
         }
+        projectileCountPerShot /= projectileMultiplier;
     }
 }

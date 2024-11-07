@@ -46,7 +46,7 @@ public class EnemyShooter : EnemyScript
         {
             shootProjectileTowards = PlayerPlane.instance.transform.position - transform.position;
         }
-        _us.ShootProjectile(shootProjectileTowards);
+        _us.ShootProjectile(shootProjectileTowards, 1);
         yield return new WaitForSeconds(fireRate);
         StartCoroutine(UnitShooting());
     }
