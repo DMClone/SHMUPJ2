@@ -60,7 +60,14 @@ public class PlayerPlane : MonoBehaviour
 
     public virtual void FixedUpdate()
     {
-        _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        if (!_us.isDead)
+        {
+            _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
+        else 
+        {
+            _rb.velocity = Vector3.zero;
+        }
     }
 
     public virtual void MoveStop(InputAction.CallbackContext callbackContext)
@@ -70,7 +77,7 @@ public class PlayerPlane : MonoBehaviour
 
     public void FireAction(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed)
+        if (callbackContext.performed && !_us.isDead)
         {
             _us.ShootProjectile(transform.up, 1);
         }
@@ -87,13 +94,13 @@ public class PlayerPlane : MonoBehaviour
     public void SpecialAction(InputAction.CallbackContext callbackContext)
     {
         Debug.Log("Special");
-        if (callbackContext.performed && !specialOnCooldown)
+        if (callbackContext.performed && !specialOnCooldown && !_us.isDead)
         {
             StartCoroutine(Special());
         }
     }
 
-   public virtual IEnumerator Special()
+    public virtual IEnumerator Special()
     {
         specialOnCooldown = true;
         _us.ShootProjectile(transform.up, 2);

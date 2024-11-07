@@ -10,7 +10,7 @@ public class BuilderOverride : PlayerPlane
     public override IEnumerator Special()
     {
         specialOnCooldown = true;
-        Instantiate(sentry, transform.position, quaternion.identity);
+        Instantiate(sentry, new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z), quaternion.identity);
         yield return new WaitForSeconds(10f);
         specialOnCooldown = false;
     }

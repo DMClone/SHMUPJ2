@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 
 public class HunterOverride : PlayerPlane
 {
-    [SerializeField] public bool dodging;
+    public bool dodging;
     private Animator _an;
     private Vector2 dodgeVelocity;
-    [SerializeField] private int dodgeStacks; // amount of bullets dodged when 
-    [SerializeField] private bool dodged;
+    private int dodgeStacks; // amount of bullets dodged when 
+    private bool dodged;
 
 
     public override void Awake()
@@ -27,13 +27,20 @@ public class HunterOverride : PlayerPlane
 
     public override void FixedUpdate()
     {
-        if (!dodging)
+        if (!_us.isDead)
         {
-            _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            if (!dodging)
+            {
+                _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            }
+            else
+            {
+                _rb.velocity = new Vector2(dodgeVelocity.x * moveSpeed, dodgeVelocity.y * moveSpeed);
+            }
         }
         else
         {
-            _rb.velocity = new Vector2(dodgeVelocity.x * moveSpeed, dodgeVelocity.y * moveSpeed);
+            _rb.velocity = Vector3.zero;
         }
     }
 

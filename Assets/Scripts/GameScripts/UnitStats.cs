@@ -34,6 +34,7 @@ public class UnitStats : MonoBehaviour
                 Instantiate(deathParticles, transform.position, Quaternion.identity);
                 if (!isPlayer)
                 {
+                    GM.instance.AddScore(100);
                     GM.instance.enemiesAlive--;
                     GM.instance.enemiesKilled++;
                     GM.instance.PowerupSpawnCheck(transform.position);
@@ -42,6 +43,10 @@ public class UnitStats : MonoBehaviour
                 else if (GetComponent<Sentry>() != null)
                 {
                     Destroy(gameObject);
+                }
+                else
+                {
+                    GM.instance.GameEnd();
                 }
             }
 

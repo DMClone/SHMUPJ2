@@ -4,6 +4,7 @@ using UnityEditor.EditorTools;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class GM : MonoBehaviour
 {
@@ -35,7 +36,9 @@ public class GM : MonoBehaviour
     public GameObject[] playerShips;
     public GameObject[] enemies;
     public GameObject[] powerups;
+    public GameObject scoreText;
 
+    public int score;
     public int enemiesAlive;
     public int enemiesKilled;
     public int currentWave = 1;
@@ -68,6 +71,15 @@ public class GM : MonoBehaviour
         _input.UI.PauseMenu.Enable();
 
         waveCoroutine = StartCoroutine(ProgressRound(waves[currentWave - 1].rounds[currentRound - 1].spawnInterval));
+    }
+
+    public void AddScore(int scoreRecieved)
+    {
+        if (!PlayerPlane.instance.GetComponent<UnitStats>().isDead)
+        {
+            score += scoreRecieved;
+            scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score;
+        }
     }
 
     #region WaveLogic
@@ -168,4 +180,14 @@ public class GM : MonoBehaviour
         }
     }
 
+    public void GameEnd()
+    {
+        StartCoroutine(EndGame());
+
+        IEnumerator EndGame()
+        {
+            yield return new WaitForSeconds(1.4f);
+            Time.timeScale = 0;
+        }
+    }
 }
