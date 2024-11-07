@@ -68,6 +68,7 @@ public class ClassButton : MonoBehaviour
 
     public void SelectHunter()
     {
+        PlayerPrefs.SetString("SelectedClass", "Hunter");
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Equipped";
         transform.parent.GetComponent<CoinScript>().HunterSelected();
     }

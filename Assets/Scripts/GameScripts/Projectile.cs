@@ -26,16 +26,19 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer != isPlayerOwned && !isDead
-        && !other.GetComponent<UnitStats>().isDead) && !other.GetComponent<HunterOverride>().dodging)
+        if ((other.GetComponent<UnitStats>() != null) && other.GetComponent<UnitStats>().isPlayer != isPlayerOwned && !isDead
+        && !other.GetComponent<UnitStats>().isDead)
         {
-            other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
-            Destroy(gameObject);
-            isDead = true;
-        }
-        else if (other.GetComponent<HunterOverride>().dodging)
-        {
-            other.GetComponent<HunterOverride>().ProjectileDodge();
+            if ((other.GetComponent<HunterOverride>() == null) || !other.GetComponent<HunterOverride>().dodging)
+            {
+                other.GetComponent<UnitStats>().TakeDamage(bulletDamage);
+                Destroy(gameObject);
+                isDead = true;
+            }
+            else if ((other.GetComponent<HunterOverride>() != null) && other.GetComponent<HunterOverride>().dodging)
+            {
+                other.GetComponent<HunterOverride>().ProjectileDodge();
+            }
         }
     }
 }

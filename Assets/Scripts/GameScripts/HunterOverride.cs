@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 
 public class HunterOverride : PlayerPlane
 {
-    public bool dodging;
+    [SerializeField] public bool dodging;
     private Animator _an;
-    private int dodgeStacks; // amount of bullets dodged when 
-    private bool dodged;
+    private Vector2 dodgeVelocity;
+    [SerializeField] private int dodgeStacks; // amount of bullets dodged when 
+    [SerializeField] private bool dodged;
 
 
     public override void Awake()
@@ -21,36 +22,43 @@ public class HunterOverride : PlayerPlane
 
     public override void MoveAction(InputAction.CallbackContext callbackContext)
     {
-        if (callbackContext.performed && !dodging)
+        moveDirection = callbackContext.ReadValue<Vector2>();
+    }
+
+    public override void FixedUpdate()
+    {
+        if (!dodging)
         {
-            moveDirection = callbackContext.ReadValue<Vector2>();
+            _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(dodgeVelocity.x * moveSpeed, dodgeVelocity.y * moveSpeed);
         }
     }
 
     public override void MoveStop(InputAction.CallbackContext callbackContext)
     {
-        if (!dodging)
-        {
-            moveDirection = Vector2.zero;
-        }
+        moveDirection = Vector2.zero;
     }
 
     public override IEnumerator Special()
     {
         specialOnCooldown = true;
         StartCoroutine(Dodge());
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         specialOnCooldown = false;
     }
-
 
     IEnumerator Dodge()
     {
         Debug.Log("Dodged");
+        dodgeVelocity = moveDirection;
         dodging = true;
         dodged = false;
         _an.SetTrigger("Dodge");
         yield return new WaitForSeconds(1);
+        dodgeStacks = 0;
         dodging = false;
     }
 
@@ -58,11 +66,13 @@ public class HunterOverride : PlayerPlane
     {
         if (!dodged && dodgeStacks < 5)
         {
+            Debug.Log("Gained dodge stack");
             dodgeStacks++;
         }
         else
         {
             Regenerate();
+            dodged = true;
         }
     }
 }

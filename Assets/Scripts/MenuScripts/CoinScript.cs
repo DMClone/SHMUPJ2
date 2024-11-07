@@ -26,7 +26,6 @@ public class CoinScript : MonoBehaviour
         }
     }
 
-
     [SerializeField] private GameObject coinDisplay;
 
     private void RefreshCoinDisplay()

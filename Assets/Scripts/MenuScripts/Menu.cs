@@ -14,11 +14,4 @@ public class Menu : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
-
-    private void Update() {
-        if (PlayerPrefs.HasKey("SelectedClass"))
-        {
-            Debug.Log(PlayerPrefs.GetString("SelectedClass"));
-        }
-    }
 }

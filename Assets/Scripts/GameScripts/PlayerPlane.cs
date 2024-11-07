@@ -58,7 +58,7 @@ public class PlayerPlane : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         _rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
